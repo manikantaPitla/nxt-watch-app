@@ -16,20 +16,22 @@ export const Flex = styled.div`
 export const Content = styled.div`
   padding: 20px;
 `
-export const SavedContainer = styled.div`
+
+export const GamingContainer = styled.div`
   background-color: ${props => props.bgColor};
   flex-grow: 2;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 `
-export const SavedVideoTitle = styled.div`
+
+export const GamingVideoTitle = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
   background-color: ${props => props.bgColor};
 `
-export const SavedTitleIconContainer = styled.div`
+export const GamingTitleIconContainer = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 80px;
@@ -41,40 +43,24 @@ export const SavedTitleIconContainer = styled.div`
   justify-content: center;
   align-items: center;
 `
-export const SavedText = styled.h1`
+export const GamingText = styled.h1`
   font-size: 22px;
   color: ${props => props.color};
   @media screen and (min-width: 768px) {
     font-size: 24px;
   }
 `
-export const SavedVideoList = styled.ul`
+export const GamingVideoList = styled.ul`
+  width: 100%;
   list-style-type: none;
   display: flex;
-  flex-direction: column;
-  margin: 0px;
-  padding: 0px;
+  flex-wrap: wrap;
+  padding-left: 0px;
+  margin: 0;
 `
-export const NoSavedVideosView = styled.div`
+export const LoaderContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: none;
-  padding: 40px 0px;
-`
-
-export const NoSavedVideosImage = styled.img`
-  width: 250px;
-`
-export const NoSavedVideosHeading = styled.h1`
-  font-size: 20px;
-  color: ${props => props.headingColor};
-  text-align: center;
-`
-
-export const NoSavedVideosNote = styled.p`
-  font-size: 16px;
-  color: ${props => props.noteColor};
-  text-align: center;
+  min-height: 80vh;
 `

@@ -17,7 +17,7 @@ export const Content = styled.div`
   padding: 20px;
 `
 
-export const NotFoundContainer = styled.div`
+export const VideoDetailViewContainer = styled.div`
   background-color: ${props => props.bgColor};
   flex-grow: 2;
   display: flex;
@@ -26,25 +26,9 @@ export const NotFoundContainer = styled.div`
   overflow-y: auto;
 `
 
-export const NotFoundVideosView = styled.div`
+export const LoaderContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: none;
-`
-
-export const NotFoundVideosImage = styled.img`
-  width: 250px;
-`
-export const NotFoundVideosHeading = styled.h1`
-  font-size: 20px;
-  color: ${props => props.headingColor};
-  text-align: center;
-`
-
-export const NotFoundVideosNote = styled.p`
-  font-size: 16px;
-  color: ${props => props.noteColor};
-  text-align: center;
+  min-height: 80vh;
 `

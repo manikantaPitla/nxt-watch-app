@@ -1,43 +1,21 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  background-color: ${props => (props.isDark ? '#181818' : ' #f9f9f9')};
+export const Main = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-
   overflow-y: auto;
 `
-export const FailureContainer = styled.div`
-  min-height: 70vh;
+export const Flex = styled.div`
+  flex-grow: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-export const FailureImage = styled.img`
-  width: 250px;
-`
-export const FailureTitle = styled.h1`
-  color: ${props => (props.isDark ? 'white' : 'black')};
-  font-size: 16px;
-`
-export const FailureText = styled.p`
-  color: ${props => (props.isDark ? 'white' : 'black')};
-  font-size: 14px;
-`
-export const RetryBtn = styled.button`
-  background-color: #3b82f6;
-  border-radius: 4px;
-  font-size: 14px;
-  padding: 8px 10px;
-  border: none;
-  outline: none;
-  color: ${props => (props.isDark ? 'white' : 'black')};
+  align-items: stretch;
+  overflow-y: auto;
 `
 
-export const VideoContainer = styled.div`
+export const HomeContainer = styled.div`
+  background-color: ${props => props.bgColor};
   flex-grow: 2;
   display: flex;
   flex-direction: column;
@@ -46,77 +24,7 @@ export const VideoContainer = styled.div`
     padding: 4px;
   }
 `
-export const DataContainer = styled.div`
-  padding: 20px;
-  @media screen and (max-width: 768px) {
-    padding: 20px 10px;
-  }
-`
-
-export const Videos = styled.div`
-  display: flex;
-  list-style-type: none;
-  flex-wrap: wrap;
-`
-
-export const Flex = styled.div`
-  flex-grow: 2;
-  display: flex;
-  align-items: stretch;
-  overflow-y: auto;
-`
-export const DataWrapper = styled.div`
-  overflow-y: auto;
-`
-
-export const SearchInputContainer = styled.div`
-  display: flex;
-  width: 450px;
-  height: 36px;
-  border: 1px solid #909090;
-  border-radius: 4px;
-  overflow: hidden;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`
-
-export const Input = styled.input`
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #7e858e;
-  font-size: 14px;
-  padding: 6px;
-  flex-grow: 2;
-`
-
-export const SearchBtn = styled.button`
-  border: none;
-  border-left: 1px solid #909090;
-  background-color :#7e858e:
-  outline: none;
-  width: 40px;
-`
-export const Icon = styled.i`
-  font-size: 16px;
-`
-
-export const Loading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-`
-export const Image = styled.img`
-  width: 100%;
-  @media screen and (min-width: 768px) {
-    width: 500px;
-  }
-`
-
-export const Banner = styled.div`
+export const BannerContainer = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   background-position: center;
   background-size: cover;
@@ -129,25 +37,17 @@ export const Banner = styled.div`
     min-height: 180px;
   }
 `
-export const Content = styled.div`
+export const BannerLeftPart = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
 `
+export const BannerRightPart = styled.div``
 
-export const Cross = styled.button`
-  align-self: flex-start;
-  border: 0;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-`
-
-export const Logo = styled.img`
+export const BannerImage = styled.img`
   width: 120px;
 `
-
-export const Btn = styled.button`
+export const BannerButton = styled.button`
   background-color: transparent;
   color: black;
   font-size: 13px;
@@ -155,4 +55,54 @@ export const Btn = styled.button`
   border: 1px solid black;
   width: 120px;
   height: 34px;
+`
+export const BannerText = styled.p`
+  font-size: 14px;
+  color: #000000;
+  @media screen and (min-width: 576px) {
+    font-size: 16px;
+  }
+`
+export const BannerCloseButton = styled.button`
+  border: none;
+  background: none;
+  height: 20px;
+`
+export const BannerBelowContainer = styled.div`
+  padding: 20px;
+`
+
+export const SearchContainer = styled.div`
+  display: flex;
+  width: 450px;
+  min-height: 36px;
+  border: 1px solid #909090;
+  overflow: hidden;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`
+export const SearchIconContainer = styled.button`
+  border: none;
+  border-left: 1px solid #909090;
+  background-color :#7e858e:
+  outline: none;
+  width: 50px;
+`
+
+export const SearchInput = styled.input`
+  color: ${props => props.color};
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #7e858e;
+  font-size: 14px;
+  padding: 6px;
+  flex-grow: 2;
+`
+export const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
 `

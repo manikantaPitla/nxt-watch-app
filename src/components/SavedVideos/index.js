@@ -1,55 +1,78 @@
+import {CgPlayListAdd} from 'react-icons/cg'
+
 import Header from '../Header'
-import SideBar from '../SideBar'
-import AppContext from '../../context/AppContext'
-import TrendingCard from '../TrendingCard'
+import NavigationBar from '../NavigationBar'
+import ThemeAndVideoContext from '../Context/ThemeAndVideoContext'
+import TrendingVideoCard from '../TrendingVideoCard'
+
 import {
-  TrendingContainer,
-  EmptyContainer,
-  Title,
+  Main,
   Flex,
-  MainContainer,
-  Text,
+  Content,
+  SavedContainer,
+  SavedTitleIconContainer,
+  SavedVideoTitle,
+  SavedVideoList,
+  SavedText,
+  NoSavedVideosView,
+  NoSavedVideosImage,
+  NoSavedVideosHeading,
+  NoSavedVideosNote,
 } from './styledComponents'
 
-const renderSavedVideos = (savedVideos, isDark) => {
-  if (savedVideos.length === 0) {
-    return (
-      <EmptyContainer isDark={isDark}>
-        <img
-          alt="no saved videos"
-          width="250px"
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
-        />
-        <Title isDark={isDark}>No saved videos found</Title>
-        <Text isDark={isDark}>Save your videos by clicking a button</Text>
-      </EmptyContainer>
-    )
-  }
-  return (
-    <TrendingContainer isDark={isDark}>
-      <Title isDark={isDark}>Saved Videos</Title>
-      {savedVideos.map(each => (
-        <TrendingCard trendingItem={each} key={each.id} />
-      ))}
-    </TrendingContainer>
-  )
-}
-
 const SavedVideos = () => (
-  <AppContext.Consumer>
+  <ThemeAndVideoContext.Consumer>
     {value => {
-      const {savedVideos, isDark} = value
+      const {isDarkTheme, savedVideos} = value
+      const bgColor = isDarkTheme ? '#0f0f0f' : '#f9f9f9'
+      const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+      const headingColor = isDarkTheme ? '#f1f5f9' : '#1e293b'
+      const noteColor = isDarkTheme ? '#e2e8f0' : '#475569'
+      const TitleBg = isDarkTheme ? ' #181818' : '#f1f1f1'
+
       return (
-        <MainContainer data-testid="savedVideos" isDark={isDark}>
+        <Main>
           <Header />
           <Flex>
-            <SideBar />
-            {renderSavedVideos(savedVideos, isDark)}
+            <NavigationBar />
+            <SavedContainer data-testid="savedVideos" bgColor={bgColor}>
+              <SavedVideoTitle bgColor={TitleBg}>
+                <SavedTitleIconContainer>
+                  <CgPlayListAdd size={35} color="#ff0000" />
+                </SavedTitleIconContainer>
+                <SavedText color={textColor}>Saved Videos</SavedText>
+              </SavedVideoTitle>
+              {savedVideos.length > 0 ? (
+                <Content>
+                  <SavedVideoList>
+                    {savedVideos.map(eachVideo => (
+                      <TrendingVideoCard
+                        key={eachVideo.id}
+                        videoDetails={eachVideo}
+                      />
+                    ))}
+                  </SavedVideoList>
+                </Content>
+              ) : (
+                <NoSavedVideosView>
+                  <NoSavedVideosImage
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+                    alt="no saved videos"
+                  />
+                  <NoSavedVideosHeading headingColor={headingColor}>
+                    No saved videos found
+                  </NoSavedVideosHeading>
+                  <NoSavedVideosNote noteColor={noteColor}>
+                    You can save your videos while watching them
+                  </NoSavedVideosNote>
+                </NoSavedVideosView>
+              )}
+            </SavedContainer>
           </Flex>
-        </MainContainer>
+        </Main>
       )
     }}
-  </AppContext.Consumer>
+  </ThemeAndVideoContext.Consumer>
 )
 
 export default SavedVideos

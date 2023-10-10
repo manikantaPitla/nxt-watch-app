@@ -1,16 +1,15 @@
 import styled from 'styled-components'
 
-export const LoginDiv = styled.div`
-  background-color: ${props => (props.isDark ? '#383838' : '#ffffff')};
+export const LoginBgContainer = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
-export const FormStyle = styled.form`
-  background-color: ${props => (props.isDark ? '#000000' : '#ffffff')};
-  box-shadow: ${props => (props.isDark ? '' : '2px 2px 31px 5px  #f1f1f1')};
+
+export const FormContainer = styled.form`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 90%;
   padding: 20px;
   display: flex;
@@ -18,66 +17,68 @@ export const FormStyle = styled.form`
   border-radius: 8px;
   @media screen and (min-width: 768px) {
     width: 420px;
-    padding: 40px;
+    padding: 40px 30px;
   }
 `
-export const Image = styled.img`
+
+export const LoginLogoImage = styled.img`
   width: 130px;
   align-self: center;
-  margin: 30px;
+  margin: 5px 0px 15px;
   @media screen and (min-width: 768px) {
     width: 160px;
   }
 `
-export const Label = styled.label`
-  color: ${props => (props.isDark ? '#ffffff' : '#383838')};
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 13px;
-`
-export const LabelContainer = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 8px 0px;
 `
-
-export const LabelContainerPass = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0px;
+export const LabelInput = styled.label`
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 13px;
 `
 
-export const LabelPass = styled.label`
-  color: ${props => (props.isDark ? '#ffffff' : '#383838')};
-  font-size: 14px;
-  margin: 0;
-`
-export const Input = styled.input`
-  border: ${props =>
-    props.isDark ? '1px solid #475569' : '1px solid #94a3b8'};
-  padding: 10px;
-  background-color: ${props => (props.isDark ? '#000000' : '#ffffff')};
+export const UserInput = styled.input`
+  color: #475569;
+  font-size: 15px;
   outline: none;
+  padding: 10px;
+  height: 40px;
+  width: 100%;
+  border: 1px solid #94a3b8;
   border-radius: 4px;
 `
 
-export const LoginBtn = styled.button`
-  background-color: #3b82f6;
-  color: #ffffff;
-  font-size: 20px;
-  border-radius: 6px;
-  font-weight: 600;
-  border-width: 0px;
-  margin: 10px 0px;
-  margin-bottom: 20px;
-  min-height: 45px;
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-  }
+export const CheckboxContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+`
+export const CheckboxInput = styled.input`
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+`
+export const ShowPasswordLabel = styled.label`
+  font-size: 15px;
+  color: #1e293b;
 `
 
-export const Error = styled.p`
-  color: #ff0b37;
-  margin: 10px;
+export const LoginButton = styled.button`
+  width: 100%;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 5px;
   font-size: 15px;
+  height: 40px;
+  color: #ffffff;
+  margin-top: 20px;
+`
+
+export const SubmitError = styled.p`
+  font-size: 14px;
+  color: #ff0b37;
 `

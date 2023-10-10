@@ -1,159 +1,140 @@
+import {withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import {withRouter, Link} from 'react-router-dom'
-import {FaMoon} from 'react-icons/fa'
-import {FiLogOut} from 'react-icons/fi'
+import Popup from 'reactjs-popup'
 import {GiHamburgerMenu} from 'react-icons/gi'
-import {AiOutlineClose} from 'react-icons/ai'
-import {BsSun} from 'react-icons/bs'
-import AppContext from '../../context/AppContext'
-import {tabList} from '../SideBar'
+import {BsMoon, BsBrightnessHigh} from 'react-icons/bs'
+import {FiLogOut} from 'react-icons/fi'
+import ThemeAndVideoContext from '../Context/ThemeAndVideoContext'
 
 import {
-  NavLinksMobile,
-  NavBar,
-  Image,
-  ListContainer,
-  List,
-  DesktopList,
-  User,
-  Logout,
-  LogoutDiv,
-  Text,
-  Close,
-  Confirm,
-  StyledPopup,
-  TransparentButton,
-  MobileDiv,
-  MobileList,
-  StyledLink,
-  Item,
-  Title,
-  MobileMenu,
-  NavMenuClose,
+  NavbarBg,
+  MenuIcon,
+  LogoLink,
+  HeaderLogo,
+  ActionsContainer,
+  ThemeButton,
+  LogoutIconButton,
+  LogoutButton,
+  ProfileImage,
+  ModalContainer,
+  CloseButton,
+  ConfirmButton,
+  ModalDesc,
+  ButtonsContainer,
 } from './styledComponents'
 
-const Header = props => {
-  const logout = () => {
-    Cookies.remove('jwt_token')
-    const {history} = props
-    history.replace('/login')
-  }
-  return (
-    <AppContext.Consumer>
-      {value => {
-        const {toggleTheme, isDark} = value
-        const linkParts = document.location.href.split('/')
-        const pageLink = `/${linkParts[linkParts.length - 1]}`
-        return (
-          <NavBar isDark={isDark}>
-            <Link to="/">
-              <Image
-                src={
-                  isDark
-                    ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                    : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-                }
-                alt="website logo"
-              />
-            </Link>
-            <ListContainer>
-              <List>
-                <TransparentButton
-                  data-testid="theme"
-                  type="button"
-                  onClick={toggleTheme}
-                >
-                  {isDark ? (
-                    <BsSun size="20" color="white" />
-                  ) : (
-                    <FaMoon size="20" />
-                  )}
-                </TransparentButton>
-              </List>
-              <DesktopList>
-                <User
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-                  alt="profile"
-                />
-              </DesktopList>
-              <MobileList>
-                <MobileMenu
-                  isDark={isDark}
-                  modal
-                  trigger={
-                    <GiHamburgerMenu
-                      size="22"
-                      color={isDark ? 'white' : 'black'}
-                    />
-                  }
-                >
-                  {close => (
-                    <>
-                      <NavMenuClose>
-                        <AiOutlineClose
-                          onClick={close}
-                          size="22"
-                          color={isDark ? 'white' : 'black'}
-                        />
-                      </NavMenuClose>
-                      <NavLinksMobile>
-                        {tabList.map(each => {
-                          const {title, link, Icon} = each
-                          return (
-                            <StyledLink to={link} key={title}>
-                              <Item isDark={isDark} active={pageLink === link}>
-                                <Icon />
-                                <Title
-                                  isDark={isDark}
-                                  active={pageLink === link}
-                                >
-                                  {title}
-                                </Title>
-                              </Item>
-                            </StyledLink>
-                          )
-                        })}
-                      </NavLinksMobile>
-                    </>
-                  )}
-                </MobileMenu>
-              </MobileList>
-              <List>
-                <StyledPopup
-                  modal
-                  trigger={
-                    <div>
-                      <Logout type="button">Logout</Logout>
-                      <MobileDiv>
-                        <FiLogOut
-                          size="22"
-                          color={isDark ? 'white' : 'black'}
-                        />
-                      </MobileDiv>
-                    </div>
-                  }
-                >
-                  {close => (
-                    <LogoutDiv isDark={isDark}>
-                      <Text isDark={isDark}>
-                        Are you sure, you want to logout
-                      </Text>
-                      <Close isDark={isDark} type="button" onClick={close}>
-                        Cancel
-                      </Close>
-                      <Confirm onClick={logout} type="button">
-                        Confirm
-                      </Confirm>
-                    </LogoutDiv>
-                  )}
-                </StyledPopup>
-              </List>
-            </ListContainer>
-          </NavBar>
-        )
-      }}
-    </AppContext.Consumer>
-  )
-}
+const Header = props => (
+  <ThemeAndVideoContext.Consumer>
+    {value => {
+      const {isDarkTheme, toggleTheme} = value
+      const color = isDarkTheme ? '#ffffff' : '#00306e'
+      const bgColor = isDarkTheme ? '#181818' : '#ffffff'
+
+      const onClickChangeTheme = () => {
+        toggleTheme()
+      }
+
+      const onClickLogout = () => {
+        const {history} = props
+        Cookies.remove('jwt_token')
+        history.replace('/login')
+      }
+
+      return (
+        <NavbarBg bgColor={bgColor}>
+          <LogoLink to="/">
+            <HeaderLogo
+              src={
+                isDarkTheme
+                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+              }
+              alt="website logo"
+            />
+          </LogoLink>
+          <ActionsContainer>
+            <ThemeButton
+              type="button"
+              data-testid="theme"
+              onClick={onClickChangeTheme}
+            >
+              {isDarkTheme ? (
+                <BsBrightnessHigh color="#ffffff" size={23} />
+              ) : (
+                <BsMoon size={24} />
+              )}
+            </ThemeButton>
+            <ProfileImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+              alt="profile"
+            />
+            <MenuIcon>
+              {isDarkTheme ? (
+                <GiHamburgerMenu color="#ffffff" size={23} />
+              ) : (
+                <GiHamburgerMenu size={23} />
+              )}
+            </MenuIcon>
+            <Popup
+              modal
+              trigger={
+                <LogoutButton type="button" bgColor={bgColor} color={color}>
+                  Logout
+                </LogoutButton>
+              }
+            >
+              {close => (
+                <ModalContainer>
+                  <ModalDesc>Are you sure, you want to logout</ModalDesc>
+                  <ButtonsContainer>
+                    <CloseButton
+                      type="button"
+                      data-testid="closeButton"
+                      onClick={() => close()}
+                    >
+                      Cancel
+                    </CloseButton>
+
+                    <ConfirmButton type="button" onClick={onClickLogout}>
+                      Confirm
+                    </ConfirmButton>
+                  </ButtonsContainer>
+                </ModalContainer>
+              )}
+            </Popup>
+            <Popup
+              modal
+              trigger={
+                <LogoutIconButton type="button">
+                  <FiLogOut size={23} color={color} />
+                </LogoutIconButton>
+              }
+              className="popup-content"
+            >
+              {close => (
+                <ModalContainer>
+                  <ModalDesc>Are you sure, you want to logout</ModalDesc>
+                  <ButtonsContainer>
+                    <CloseButton
+                      type="button"
+                      data-testid="closeButton"
+                      onClick={() => close()}
+                    >
+                      Cancel
+                    </CloseButton>
+
+                    <ConfirmButton type="button" onClick={onClickLogout}>
+                      Confirm
+                    </ConfirmButton>
+                  </ButtonsContainer>
+                </ModalContainer>
+              )}
+            </Popup>
+          </ActionsContainer>
+        </NavbarBg>
+      )
+    }}
+  </ThemeAndVideoContext.Consumer>
+)
 
 export default withRouter(Header)
